@@ -13,24 +13,25 @@ import android.view.ViewGroup
 import com.dog.samurai.sencordetector.R
 import kotlinx.android.synthetic.main.fragment_light_sensor.*
 
-class SensorFragment : Fragment(), SensorEventListener {
+class EnvironmentSensorFragment : Fragment(), SensorEventListener {
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
-
     }
 
     override fun onSensorChanged(event: SensorEvent) {
         parameterText.text = event.values[0].toString()
     }
 
-    private var name: String? = null
-    private var mParam2: Int? = null
+    private lateinit var sensorManager: SensorManager
+    private lateinit var sensor: Sensor
+    private var sensorNameArg: String? = null
+    private var sensorTypeArg: Int? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         if (arguments != null) {
-            name = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getInt(ARG_PARAM2)
+            sensorNameArg = arguments.getString(SENSOR_NAME_ARG)
+            sensorTypeArg = arguments.getInt(SENSOR_TYPE_ARG)
         }
         // Inflate the layout for this fragment
         return inflater!!.inflate(R.layout.fragment_light_sensor, container, false)
@@ -40,55 +41,53 @@ class SensorFragment : Fragment(), SensorEventListener {
         super.onViewCreated(view, savedInstanceState)
 
         sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorName.text = sensorNameArg
+        paramNameText.visibility = View.VISIBLE
+        paramNameText.visibility = View.VISIBLE
 
-        when (name) {
+        when (sensorNameArg) {
             "AMBIENT_TEMPERATURE" -> {
-                sensorDescription.text = "周囲の温度を表示します。"
-                paramNameText.text = "気温"
+                sensorDescription.text = resources.getString(R.string.environ_ambient_temperate_desc)
+                paramNameText.text = resources.getString(R.string.environ_ambient_temperate_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
             }
             "LIGHT" -> {
-                sensorDescription.text = "照度を数値化します。"
-                paramNameText.text = "照度"
+                sensorDescription.text = resources.getString(R.string.environ_light_desc)
+                paramNameText.text = resources.getString(R.string.environ_light_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
             }
             "PRESSURE" -> {
-                sensorDescription.text = "周囲の空気圧を表示します。"
-                paramNameText.text = "気圧"
+                sensorDescription.text = resources.getString(R.string.environ_pressure_desc)
+                paramNameText.text = resources.getString(R.string.environ_pressure_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
             }
             "RELATIVE_HUMIDITY" -> {
-                sensorDescription.text = "周囲の相対湿度を表示します。"
-                paramNameText.text = "湿度"
+                sensorDescription.text = resources.getString(R.string.environ_relative_humidity_desc)
+                paramNameText.text = resources.getString(R.string.environ_relative_humidity_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY)
             }
             "TEMPERATURE" -> {
-                sensorDescription.text = "端末の温度を表示します。"
-                paramNameText.text = "温度"
+                sensorDescription.text = resources.getString(R.string.environ_temperate_desc)
+                paramNameText.text = resources.getString(R.string.environ_temperate_title)
+                @Suppress("DEPRECATION")
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE)
             }
             else -> {
                 activity.supportFragmentManager.popBackStack()
             }
         }
-
-        sensorName.text = name
-
-
     }
 
-    lateinit var sensorManager: SensorManager
-    lateinit var sensor: Sensor
-
     companion object {
-        private const val ARG_PARAM1 = "sensorName"
-        private const val ARG_PARAM2 = "sensorType"
+        private const val SENSOR_NAME_ARG = "sensorName"
+        private const val SENSOR_TYPE_ARG = "sensorType"
 
-        fun newInstance(param1: String, param2: Int): SensorFragment {
-            val fragment = SensorFragment()
-            val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putInt(ARG_PARAM2, param2)
+        fun newInstance(param1: String, param2: Int): EnvironmentSensorFragment {
+            val fragment = EnvironmentSensorFragment()
+            val args = Bundle().apply {
+                putString(SENSOR_NAME_ARG, param1)
+                putInt(SENSOR_TYPE_ARG, param2)
+            }
             fragment.arguments = args
             return fragment
         }
@@ -103,4 +102,4 @@ class SensorFragment : Fragment(), SensorEventListener {
         super.onPause()
         sensorManager.unregisterListener(this)
     }
-}// Required empty public constructor
+}

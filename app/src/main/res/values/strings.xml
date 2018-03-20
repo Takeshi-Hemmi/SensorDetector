@@ -3,4 +3,48 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="environ_ambient_temperate_desc">周囲の温度を表示します。</string>
+    <string name="environ_ambient_temperate_title">気温</string>
+    <string name="environ_light_desc">照度を表示します。</string>
+    <string name="environ_light_title">照度</string>
+    <string name="environ_pressure_desc">周囲の空気圧を表示します。</string>
+    <string name="environ_pressure_title">気圧</string>
+    <string name="environ_relative_humidity_desc">周囲の相対湿度を表示します。</string>
+    <string name="environ_relative_humidity_title">湿度</string>
+    <string name="environ_temperate_desc">端末の温度を表示します。この機能は非推奨となっており、周囲温度計の使用が推奨されています。</string>
+    <string name="environ_temperate_title">温度</string>
+    <string name="motion_accelerometer_desc">端末の加速度を表示します。</string>
+    <string name="motion_accelerometer_title">加速度</string>
+    <string name="motion_accelerometer_uncalibrated_desc">端末の加速度を表示します。ハードアイアン校正は考慮されていません。</string>
+    <string name="motion_accelerometer_uncalibrated_title">加速度（未校正）</string>
+    <string name="motion_gravity_desc">重力を表示します。</string>
+    <string name="motion_gravity_title">重力</string>
+    <string name="motion_gyroscope_desc">物体の角度（回転角度）や角速度（角加速度）を表示します。</string>
+    <string name="motion_gyroscope_title">ジャイロスコープ</string>
+    <string name="motion_gyroscope_uncalibrated_desc">物体の角度（回転角度）や角速度（角加速度）を</string>
+    <string name="motion_gyroscope_uncalibrated_title">ジャイロスコープ（未校正）</string>
+    <string name="motion_linear_acceleration_desc">重力の影響を除いた端末の加速度を表示します。</string>
+    <string name="motion_linear_acceleration_title">加速度（重力除外）</string>
+    <string name="motion_rotation_vector_desc">地軸と角度の組み合わせでスマートフォンの向きを検知します。</string>
+    <string name="motion_rotation_vector_title">回転ベクトル</string>
+    <string name="motion_significant_motion_desc">動作を検出しトリガーイベントを発射するセンサーです。</string>
+    <string name="motion_significant_motion_title">動作検出</string>
+    <string name="motion_step_counter_desc">最後に再起動してからユーザーが取ったステップ数を表示します。フィットネスアプリなどと共通の数値の場合があります。</string>
+    <string name="motion_step_counter_title">歩数</string>
+    <string name="motion_step_detector_desc">ユーザーが歩数を取る度にイベントがトリガーされます。</string>
+    <string name="motion_step_detector_title">歩行検出</string>
+    <string name="position_game_rotation_vector_desc">地磁気フィールドを使用しない回転ベクトルセンサーです。</string>
+    <string name="position_game_rotation_vector_title">ゲーム・回転ベクトル</string>
+    <string name="position_geomagnetic_rotation_vector_desc">ジャイロスコープの代わりに地磁気センサーを使用した回転ベクトルセンサーです。</string>
+    <string name="position_geomagnetic_rotation_vector_title"></string>
+
+    <string name="position_magnetic_field_desc">周囲磁場を測定する地磁気センサーです。</string>
+
+    <string name="position_magnetic_field_uncalibrated_desc">周囲磁場を測定する地磁気センサーですが、ハードアイアン校正は考慮されていません。</string>
+
+    <string name="position_orientation_desc">傾きセンサー。この機能は非推奨となっており、回転ベクトルセンサー、getRotationMatrix、remapCoordinateSystem、getOrientationを使用して数値を取得する事が推奨されています。</string>
+
+    <string name="position_proximity_desc">近接センサー。端末により近いか遠いかのみを表す場合があります。</string>
+
+
 </resources>

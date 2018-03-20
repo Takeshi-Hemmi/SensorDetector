@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.dog.samurai.sencordetector.sensors.SensorFragment
+import com.dog.samurai.sencordetector.sensors.EnvironmentSensorFragment
+import com.dog.samurai.sencordetector.sensors.MotionSensorFragment
+import com.dog.samurai.sencordetector.sensors.PositionSensorFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,8 +23,6 @@ class MainActivity : AppCompatActivity() {
         sensorTypeList.mapIndexed { index, type ->
             if (((getSystemService(Context.SENSOR_SERVICE) as SensorManager).getDefaultSensor(type)) != null) {
                 enabledList.add(sensorNameList[index])
-            } else {
-
             }
         }
 
@@ -32,7 +32,19 @@ class MainActivity : AppCompatActivity() {
                 cardListener = object : SensorAdapter.CardListener {
                     override fun onClick(sensorType: Int, sensorName: String, sensorCategory: Int) {
                         if (enabledList.contains(sensorName) && sensorCategory == ENVIRONMENT_SENSOR) {
-                            val fragment = SensorFragment.newInstance(sensorName, sensorType)
+                            val fragment = EnvironmentSensorFragment.newInstance(sensorName, sensorType)
+                            val transaction = supportFragmentManager.beginTransaction()
+                            transaction.add(R.id.contentFrame, fragment, sensorName)
+                            transaction.addToBackStack(sensorName)
+                            transaction.commit()
+                        } else if(enabledList.contains(sensorName) && sensorCategory == MOTION_SENSOR) {
+                            val fragment = MotionSensorFragment.newInstance(sensorName, sensorType)
+                            val transaction = supportFragmentManager.beginTransaction()
+                            transaction.add(R.id.contentFrame, fragment, sensorName)
+                            transaction.addToBackStack(sensorName)
+                            transaction.commit()
+                        } else if(enabledList.contains(sensorName) && sensorCategory == POSITION_SENSOR) {
+                            val fragment = PositionSensorFragment.newInstance(sensorName, sensorType)
                             val transaction = supportFragmentManager.beginTransaction()
                             transaction.add(R.id.contentFrame, fragment, sensorName)
                             transaction.addToBackStack(sensorName)

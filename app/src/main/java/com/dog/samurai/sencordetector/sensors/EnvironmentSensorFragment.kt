@@ -27,20 +27,19 @@ class EnvironmentSensorFragment : Fragment(), SensorEventListener {
     private var sensorNameArg: String? = null
     private var sensorTypeArg: Int? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (arguments != null) {
-            sensorNameArg = arguments.getString(SENSOR_NAME_ARG)
-            sensorTypeArg = arguments.getInt(SENSOR_TYPE_ARG)
+            sensorNameArg = arguments!!.getString(SENSOR_NAME_ARG)
+            sensorTypeArg = arguments!!.getInt(SENSOR_TYPE_ARG)
         }
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_light_sensor, container, false)
+        return inflater.inflate(R.layout.fragment_light_sensor, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensorName.text = sensorNameArg
         paramNameText.visibility = View.VISIBLE
         paramNameText.visibility = View.VISIBLE
@@ -55,16 +54,19 @@ class EnvironmentSensorFragment : Fragment(), SensorEventListener {
                 sensorDescription.text = resources.getString(R.string.environ_light_desc)
                 paramNameText.text = resources.getString(R.string.environ_light_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
+//                Photo by Burak Kebapci from Pexels
             }
             "PRESSURE" -> {
                 sensorDescription.text = resources.getString(R.string.environ_pressure_desc)
                 paramNameText.text = resources.getString(R.string.environ_pressure_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
+//                Photo by Azim Islam from Pexels
             }
             "RELATIVE_HUMIDITY" -> {
                 sensorDescription.text = resources.getString(R.string.environ_relative_humidity_desc)
                 paramNameText.text = resources.getString(R.string.environ_relative_humidity_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY)
+//                Photo by Heorhii Heorhiichuk from Pexels
             }
             "TEMPERATURE" -> {
                 sensorDescription.text = resources.getString(R.string.environ_temperate_desc)
@@ -73,7 +75,7 @@ class EnvironmentSensorFragment : Fragment(), SensorEventListener {
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE)
             }
             else -> {
-                activity.supportFragmentManager.popBackStack()
+                activity?.supportFragmentManager?.popBackStack()
             }
         }
     }

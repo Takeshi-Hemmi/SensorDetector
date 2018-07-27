@@ -5,16 +5,19 @@ import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.Menu
+import android.view.MenuItem
 import com.dog.samurai.sencordetector.sensors.EnvironmentSensorFragment
 import com.dog.samurai.sencordetector.sensors.MotionSensorFragment
 import com.dog.samurai.sencordetector.sensors.PositionSensorFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val enabledList: MutableList<String> = mutableListOf()
+    val enabledList: MutableList<String> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,36 +29,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<RecyclerView>(R.id.sensor_recycler).apply {
-            setHasFixedSize(true)
-            adapter = SensorAdapter(this.context, sensorTypeList, sensorNameList, sensorNameListJP, enabledList).apply {
-                cardListener = object : SensorAdapter.CardListener {
-                    override fun onClick(sensorType: Int, sensorName: String, sensorCategory: Int) {
-                        if (enabledList.contains(sensorName) && sensorCategory == ENVIRONMENT_SENSOR) {
-                            val fragment = EnvironmentSensorFragment.newInstance(sensorName, sensorType)
-                            val transaction = supportFragmentManager.beginTransaction()
-                            transaction.add(R.id.contentFrame, fragment, sensorName)
-                            transaction.addToBackStack(sensorName)
-                            transaction.commit()
-                        } else if(enabledList.contains(sensorName) && sensorCategory == MOTION_SENSOR) {
-                            val fragment = MotionSensorFragment.newInstance(sensorName, sensorType)
-                            val transaction = supportFragmentManager.beginTransaction()
-                            transaction.add(R.id.contentFrame, fragment, sensorName)
-                            transaction.addToBackStack(sensorName)
-                            transaction.commit()
-                        } else if(enabledList.contains(sensorName) && sensorCategory == POSITION_SENSOR) {
-                            val fragment = PositionSensorFragment.newInstance(sensorName, sensorType)
-                            val transaction = supportFragmentManager.beginTransaction()
-                            transaction.add(R.id.contentFrame, fragment, sensorName)
-                            transaction.addToBackStack(sensorName)
-                            transaction.commit()
-                        }
-                    }
-                }
-            }
-            layoutManager = LinearLayoutManager(this.context)
-        }
+        renderFragment(TopFragment())
 
+    }
+
+    fun renderFragment(fragment: Fragment?) {
+        if (fragment == null) return
+        val transaction = supportFragmentManager.beginTransaction()
+        if (fragment is TopFragment) {
+            transaction.add(R.id.contentFrame, fragment)
+        } else {
+            transaction.replace(R.id.contentFrame, fragment)
+        }
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     companion object {
@@ -150,12 +137,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    data class ListData (
+    data class ListData(
             val types: List<Int>,
             val names: List<String>,
             val namesJP: List<String>
     )
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.help, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        renderFragment(HelpFragment())
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            super.onBackPressed()
+        }
+    }
 }
 
 

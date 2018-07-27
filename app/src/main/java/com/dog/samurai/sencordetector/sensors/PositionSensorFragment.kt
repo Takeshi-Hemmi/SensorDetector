@@ -69,20 +69,19 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
     private var sensorNameArg: String? = null
     private var sensorTypeArg: Int? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (arguments != null) {
-            sensorNameArg = arguments.getString(SENSOR_NAME_ARG)
-            sensorTypeArg = arguments.getInt(SENSOR_TYPE_ARG)
+            sensorNameArg = arguments!!.getString(SENSOR_NAME_ARG)
+            sensorTypeArg = arguments!!.getInt(SENSOR_TYPE_ARG)
         }
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_light_sensor, container, false)
+        return inflater.inflate(R.layout.fragment_light_sensor, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensorName.text = sensorNameArg
 
         when (sensorNameArg) {
@@ -104,7 +103,7 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR)
                 sensorInfo.text = "Vendor: ${sensor.vendor}"
 
-
+//                Photo by Jakub Novacek from Pexels:vector
             }
             "GEOMAGNETIC_ROTATION_VECTOR" -> {
                 sensorDescription.text = resources.getString(R.string.position_geomagnetic_rotation_vector_desc)
@@ -137,8 +136,9 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
                     visibility = View.VISIBLE
                     text = "Z軸に沿った重力"
                 }
-                sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY)
+                sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
                 sensorInfo.text = "Vendor: ${sensor.vendor} \n単位: μT"
+//                Photo by Pete Johnson from Pexels
             }
             "MAGNETIC_FIELD_UNCALIBRATED" -> {
                 sensorDescription.text = resources.getString(R.string.position_magnetic_field_uncalibrated_desc)
@@ -167,7 +167,7 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
                     text = "Z軸に沿ったアイアンバイアスの推定量"
                 }
 
-                sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
+                sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED)
                 sensorInfo.text = "Vendor: ${sensor.vendor} \n単位: μT"
             }
             "ORIENTATION" -> {
@@ -185,7 +185,7 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
                     text = "Roll: ロール（y軸周りの角度）"
                 }
 
-                sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE_UNCALIBRATED)
+                sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION)
                 sensorInfo.text = "Vendor: ${sensor.vendor} \n単位: 度"
             }
             "PROXIMITY" -> {
@@ -194,12 +194,13 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
                     visibility = View.VISIBLE
                     text = "オブジェクトからの距離"
                 }
-                sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
+                sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
                 sensorInfo.text = "Vendor: ${sensor.vendor} \n単位: cm"
+//                Photo by juan mendez from Pexels
             }
 
             else -> {
-                activity.supportFragmentManager.popBackStack()
+                activity?.supportFragmentManager?.popBackStack()
             }
         }
     }

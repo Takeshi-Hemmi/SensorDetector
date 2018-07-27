@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">SencorDetector</string>
+    <string name="app_name">SensorDetector</string>
+    <string name="test_text_en">Test Text. Test Text. Test Text. Test Text. Test Text. Test Text.</string>
+    <string name="test_text_jp">テストテキスト。テストテキスト。テストテキスト。テストテキスト。テストテキスト。</string>
+    <string name="help_main_text">Android携帯が利用できるセンサーの一覧を表示します。お使いの端末には搭載されていないセンサーはグレーで表示されます。</string>
+    <string name="help_environment">環境センサー</string>
+    <string name="help_motion">モーションセンサー</string>
+    <string name="help_position">ポジションセンサー</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="environ_ambient_temperate_desc">周囲の温度を表示します。</string>
     <string name="environ_ambient_temperate_title">気温</string>

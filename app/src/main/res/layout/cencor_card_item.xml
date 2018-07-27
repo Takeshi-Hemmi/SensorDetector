@@ -2,53 +2,72 @@
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="2dp"
-    app:contentPadding="8dp">
+    app:cardCornerRadius="1dp">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
         <TextView
-            android:id="@+id/cardTextEn"
-            android:layout_width="wrap_content"
+            android:id="@+id/english_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textSize="14sp" />
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/test_text_en"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/japanese_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/type_icon_background"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cardTextJp"
-            android:layout_width="wrap_content"
+            android:id="@+id/japanese_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardTextEn"
-            android:textColor="#AAA"
-            android:textSize="12sp" />
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/test_text_jp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/type_icon_background"
+            app:layout_constraintTop_toBottomOf="@+id/english_name" />
 
-        <ImageView
-            android:id="@+id/cardActiveImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/ic_thumbs_up" />
+        <FrameLayout
+            android:id="@+id/type_icon_background"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
 
-        <ImageView
-            android:id="@+id/cardTypeImage"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@id/cardActiveImage"
-            android:tint="@android:color/holo_green_dark"
-            app:srcCompat="@drawable/ic_leaf" />
+            android:background="@drawable/shape_circle_normal"
+            app:layout_constraintLeft_toRightOf="@+id/english_name"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/type_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/ic_environment" />
+        </FrameLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

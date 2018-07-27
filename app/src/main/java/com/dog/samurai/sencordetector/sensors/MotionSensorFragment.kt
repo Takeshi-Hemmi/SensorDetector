@@ -69,20 +69,19 @@ class MotionSensorFragment : Fragment(), SensorEventListener {
     private var sensorNameArg: String? = null
     private var sensorTypeArg: Int? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (arguments != null) {
-            sensorNameArg = arguments.getString(SENSOR_NAME_ARG)
-            sensorTypeArg = arguments.getInt(SENSOR_TYPE_ARG)
+            sensorNameArg = arguments!!.getString(SENSOR_NAME_ARG)
+            sensorTypeArg = arguments!!.getInt(SENSOR_TYPE_ARG)
         }
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_light_sensor, container, false)
+        return inflater.inflate(R.layout.fragment_light_sensor, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensorName.text = sensorNameArg
 
         when (sensorNameArg) {
@@ -242,7 +241,7 @@ class MotionSensorFragment : Fragment(), SensorEventListener {
                 sensorInfo.text = "Vendor: ${sensor.vendor} "
             }
             else -> {
-                activity.supportFragmentManager.popBackStack()
+                activity?.supportFragmentManager?.popBackStack()
             }
         }
     }

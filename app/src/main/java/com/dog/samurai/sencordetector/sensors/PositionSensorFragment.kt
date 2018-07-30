@@ -1,6 +1,5 @@
 package com.dog.samurai.sencordetector.sensors
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -8,11 +7,12 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.res.ResourcesCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dog.samurai.sencordetector.R
-import kotlinx.android.synthetic.main.fragment_light_sensor.*
+import kotlinx.android.synthetic.main.fragment_detail_sensor.*
 
 class PositionSensorFragment : Fragment(), SensorEventListener {
 
@@ -23,40 +23,28 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
         event.values.mapIndexed { index, valueFloat ->
             when (index) {
                 0 -> {
-                    parameterText.apply {
-                        visibility = View.VISIBLE
-                        text = valueFloat.toString()
-                    }
+                    param_value1.text = valueFloat.toString()
                 }
                 1 -> {
-                    parameterText2.apply {
-                        visibility = View.VISIBLE
-                        text = valueFloat.toString()
-                    }
+                    param_container2.visibility = View.VISIBLE
+                    param_value2.text = valueFloat.toString()
                 }
                 2 -> {
-                    parameterText3.apply {
-                        visibility = View.VISIBLE
-                        text = valueFloat.toString()
-                    }
+                    param_container3.visibility = View.VISIBLE
+                    param_value3.text = valueFloat.toString()
                 }
+
                 3 -> {
-                    parameterText4.apply {
-                        visibility = View.VISIBLE
-                        text = valueFloat.toString()
-                    }
+                    param_container4.visibility = View.VISIBLE
+                    param_value4.text = valueFloat.toString()
                 }
                 4 -> {
-                    parameterText5.apply {
-                        visibility = View.VISIBLE
-                        text = valueFloat.toString()
-                    }
+                    param_container5.visibility = View.VISIBLE
+                    param_value5.text = valueFloat.toString()
                 }
                 5 -> {
-                    parameterText6.apply {
-                        visibility = View.VISIBLE
-                        text = valueFloat.toString()
-                    }
+                    param_container6.visibility = View.VISIBLE
+                    param_value6.text = valueFloat.toString()
                 }
                 else -> {
                 }
@@ -75,128 +63,108 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
             sensorTypeArg = arguments!!.getInt(SENSOR_TYPE_ARG)
         }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_light_sensor, container, false)
+        return inflater.inflate(R.layout.fragment_detail_sensor, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        sensorName.text = sensorNameArg
+        sensor_name.text = sensorNameArg
+        detail_frame.background = ResourcesCompat.getDrawable(resources, R.drawable.shape_circle_dark, null)
+        detail_icon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_position, null))
 
         when (sensorNameArg) {
             "GAME_ROTATION_VECTOR" -> {
-                sensorDescription.text = resources.getString(R.string.position_game_rotation_vector_desc)
+                sensor_description.text = resources.getString(R.string.position_game_rotation_vector_desc)
 
-                paramNameText.apply {
-                    visibility = View.VISIBLE
-                    text = "X軸に沿った回転ベクトル成分(x * sin(θ/2))"
-                }
-                paramNameText2.apply {
-                    visibility = View.VISIBLE
-                    text = "Y軸に沿った回転ベクトル成分(y * sin(θ/2))"
-                }
-                paramNameText3.apply {
-                    visibility = View.VISIBLE
-                    text = "Z軸に沿った回転ベクトル成分(z * sin(θ/2))"
-                }
+                param_container1.visibility = View.VISIBLE
+                param_key1.text = resources.getString(R.string.position_geomagnetic_rotation_vector_key1)
+
+                param_container2.visibility = View.VISIBLE
+                param_key2.text = resources.getString(R.string.position_geomagnetic_rotation_vector_key2)
+
+                param_container3.visibility = View.VISIBLE
+                param_key3.text = resources.getString(R.string.position_geomagnetic_rotation_vector_key3)
+
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR)
-                sensorInfo.text = "Vendor: ${sensor.vendor}"
+                sensor_info.text = "Vendor: ${sensor.vendor}"
 
 //                Photo by Jakub Novacek from Pexels:vector
             }
             "GEOMAGNETIC_ROTATION_VECTOR" -> {
-                sensorDescription.text = resources.getString(R.string.position_geomagnetic_rotation_vector_desc)
-                paramNameText.apply {
-                    visibility = View.VISIBLE
-                    text = "X軸に沿った回転ベクトル成分(x * sin(θ/2))"
-                }
-                paramNameText2.apply {
-                    visibility = View.VISIBLE
-                    text = "Y軸に沿った回転ベクトル成分(y * sin(θ/2))"
-                }
-                paramNameText3.apply {
-                    visibility = View.VISIBLE
-                    text = "Z軸に沿った回転ベクトル成分(z * sin(θ/2))"
-                }
+                sensor_description.text = resources.getString(R.string.position_geomagnetic_rotation_vector_desc)
+                param_container1.visibility = View.VISIBLE
+                param_key1.text = "X軸に沿った回転ベクトル成分(x * sin(θ/2))"
+
+                param_container2.visibility = View.VISIBLE
+                param_key2.text = "Y軸に沿った回転ベクトル成分(y * sin(θ/2))"
+
+                param_container3.visibility = View.VISIBLE
+                param_key3.text = "Z軸に沿った回転ベクトル成分(z * sin(θ/2))"
+
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR)
-                sensorInfo.text = "Vendor: ${sensor.vendor}"
+                sensor_info.text = "Vendor: ${sensor.vendor}"
             }
             "MAGNETIC_FIELD" -> {
-                sensorDescription.text = resources.getString(R.string.position_magnetic_field_desc)
-                paramNameText.apply {
-                    visibility = View.VISIBLE
-                    text = "X軸に沿った地磁気の強さ"
-                }
-                paramNameText2.apply {
-                    visibility = View.VISIBLE
-                    text = "Y軸に沿った重力"
-                }
-                paramNameText3.apply {
-                    visibility = View.VISIBLE
-                    text = "Z軸に沿った重力"
-                }
+                sensor_description.text = resources.getString(R.string.position_magnetic_field_desc)
+                param_container1.visibility = View.VISIBLE
+                param_key1.text = "X軸に沿った地磁気の強さ"
+
+                param_container2.visibility = View.VISIBLE
+                param_key2.text = "Y軸に沿った重力"
+
+                param_container3.visibility = View.VISIBLE
+                param_key3.text = "Z軸に沿った重力"
+
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
-                sensorInfo.text = "Vendor: ${sensor.vendor} \n単位: μT"
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: μT"
 //                Photo by Pete Johnson from Pexels
             }
             "MAGNETIC_FIELD_UNCALIBRATED" -> {
-                sensorDescription.text = resources.getString(R.string.position_magnetic_field_uncalibrated_desc)
-                paramNameText.apply {
-                    visibility = View.VISIBLE
-                    text = "X軸に沿った地磁気強度（ハードアイアン較正なし）"
-                }
-                paramNameText2.apply {
-                    visibility = View.VISIBLE
-                    text = "Y軸に沿った地磁気強度（ハードアイアン較正なし）"
-                }
-                paramNameText3.apply {
-                    visibility = View.VISIBLE
-                    text = "Z軸に沿った地磁気強度（ハードアイアン較正なし）"
-                }
-                paramNameText4.apply {
-                    visibility = View.VISIBLE
-                    text = "X軸に沿ったアイアンバイアスの推定量"
-                }
-                paramNameText5.apply {
-                    visibility = View.VISIBLE
-                    text = "Y軸に沿ったアイアンバイアスの推定量"
-                }
-                paramNameText6.apply {
-                    visibility = View.VISIBLE
-                    text = "Z軸に沿ったアイアンバイアスの推定量"
-                }
+                sensor_description.text = resources.getString(R.string.position_magnetic_field_uncalibrated_desc)
+                param_container1.visibility = View.VISIBLE
+                param_key1.text = "X軸に沿った地磁気強度（ハードアイアン較正なし）"
+
+                param_container2.visibility = View.VISIBLE
+                param_key2.text = "Y軸に沿った地磁気強度（ハードアイアン較正なし）"
+
+                param_container3.visibility = View.VISIBLE
+                param_key3.text = "Z軸に沿った地磁気強度（ハードアイアン較正なし）"
+
+                param_container4.visibility = View.VISIBLE
+                param_key4.text = "X軸に沿ったアイアンバイアスの推定量"
+
+                param_container5.visibility = View.VISIBLE
+                param_key5.text = "Y軸に沿ったアイアンバイアスの推定量"
+
+                param_container6.visibility = View.VISIBLE
+                param_key6.text = "Z軸に沿ったアイアンバイアスの推定量"
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED)
-                sensorInfo.text = "Vendor: ${sensor.vendor} \n単位: μT"
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: μT"
             }
             "ORIENTATION" -> {
-                sensorDescription.text = resources.getString(R.string.position_orientation_desc)
-                paramNameText.apply {
-                    visibility = View.VISIBLE
-                    text = "Azimuth: 方位角（z軸周りの角度）"
-                }
-                paramNameText2.apply {
-                    visibility = View.VISIBLE
-                    text = "Pitch: ピッチ（x軸周りの角度）"
-                }
-                paramNameText3.apply {
-                    visibility = View.VISIBLE
-                    text = "Roll: ロール（y軸周りの角度）"
-                }
+                sensor_description.text = resources.getString(R.string.position_orientation_desc)
+                param_container1.visibility = View.VISIBLE
+                param_key1.text = "Azimuth: 方位角（z軸周りの角度）"
+
+                param_container2.visibility = View.VISIBLE
+                param_key2.text = "Pitch: ピッチ（x軸周りの角度）"
+
+                param_container3.visibility = View.VISIBLE
+                param_key3.text = "Roll: ロール（y軸周りの角度）"
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION)
-                sensorInfo.text = "Vendor: ${sensor.vendor} \n単位: 度"
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: 度"
             }
             "PROXIMITY" -> {
-                sensorDescription.text = resources.getString(R.string.position_proximity_desc)
-                paramNameText.apply {
-                    visibility = View.VISIBLE
-                    text = "オブジェクトからの距離"
-                }
+                sensor_description.text = resources.getString(R.string.position_proximity_desc)
+                param_container1.visibility = View.VISIBLE
+                param_key1.text = "オブジェクトからの距離"
+
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
-                sensorInfo.text = "Vendor: ${sensor.vendor} \n単位: cm"
-//                Photo by juan mendez from Pexels
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: cm"
             }
 
             else -> {

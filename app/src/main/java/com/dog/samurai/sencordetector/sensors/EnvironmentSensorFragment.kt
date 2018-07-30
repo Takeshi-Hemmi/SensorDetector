@@ -7,11 +7,12 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.res.ResourcesCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dog.samurai.sencordetector.R
-import kotlinx.android.synthetic.main.fragment_light_sensor.*
+import kotlinx.android.synthetic.main.fragment_detail_sensor.*
 
 class EnvironmentSensorFragment : Fragment(), SensorEventListener {
 
@@ -19,7 +20,7 @@ class EnvironmentSensorFragment : Fragment(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        parameterText.text = event.values[0].toString()
+        param_value1.text = event.values[0].toString()
     }
 
     private lateinit var sensorManager: SensorManager
@@ -33,46 +34,49 @@ class EnvironmentSensorFragment : Fragment(), SensorEventListener {
             sensorTypeArg = arguments!!.getInt(SENSOR_TYPE_ARG)
         }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_light_sensor, container, false)
+        return inflater.inflate(R.layout.fragment_detail_sensor, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        sensorName.text = sensorNameArg
-        paramNameText.visibility = View.VISIBLE
-        paramNameText.visibility = View.VISIBLE
+        sensor_name.text = sensorNameArg
+        detail_frame.background = ResourcesCompat.getDrawable(resources, R.drawable.shape_circle_light, null)
+        detail_icon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_environment, null))
+        param_container1.visibility = View.VISIBLE
 
         when (sensorNameArg) {
             "AMBIENT_TEMPERATURE" -> {
-                sensorDescription.text = resources.getString(R.string.environ_ambient_temperate_desc)
-                paramNameText.text = resources.getString(R.string.environ_ambient_temperate_title)
+                sensor_description.text = resources.getString(R.string.environ_ambient_temperate_desc)
+                param_key1.text = resources.getString(R.string.environ_ambient_temperate_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: ℃"
             }
             "LIGHT" -> {
-                sensorDescription.text = resources.getString(R.string.environ_light_desc)
-                paramNameText.text = resources.getString(R.string.environ_light_title)
+                sensor_description.text = resources.getString(R.string.environ_light_desc)
+                param_key1.text = resources.getString(R.string.environ_light_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
-//                Photo by Burak Kebapci from Pexels
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: lx"
             }
             "PRESSURE" -> {
-                sensorDescription.text = resources.getString(R.string.environ_pressure_desc)
-                paramNameText.text = resources.getString(R.string.environ_pressure_title)
+                sensor_description.text = resources.getString(R.string.environ_pressure_desc)
+                param_key1.text = resources.getString(R.string.environ_pressure_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
-//                Photo by Azim Islam from Pexels
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: hPa"
             }
             "RELATIVE_HUMIDITY" -> {
-                sensorDescription.text = resources.getString(R.string.environ_relative_humidity_desc)
-                paramNameText.text = resources.getString(R.string.environ_relative_humidity_title)
+                sensor_description.text = resources.getString(R.string.environ_relative_humidity_desc)
+                param_key1.text = resources.getString(R.string.environ_relative_humidity_title)
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY)
-//                Photo by Heorhii Heorhiichuk from Pexels
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: %"
             }
             "TEMPERATURE" -> {
-                sensorDescription.text = resources.getString(R.string.environ_temperate_desc)
-                paramNameText.text = resources.getString(R.string.environ_temperate_title)
+                sensor_description.text = resources.getString(R.string.environ_temperate_desc)
+                param_key1.text = resources.getString(R.string.environ_temperate_title)
                 @Suppress("DEPRECATION")
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE)
+                sensor_info.text = "Vendor: ${sensor.vendor} \n単位: ℃"
             }
             else -> {
                 activity?.supportFragmentManager?.popBackStack()

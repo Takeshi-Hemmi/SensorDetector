@@ -5,17 +5,15 @@ import android.graphics.Color
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.annotation.GlideModule
-import com.dog.samurai.sencordetector.MainActivity.Companion.ENVIRONMENT_SENSOR
-import com.dog.samurai.sencordetector.MainActivity.Companion.MOTION_SENSOR
-import com.dog.samurai.sencordetector.MainActivity.Companion.POSITION_SENSOR
+import com.dog.samurai.sencordetector.constants.AppConstant.Companion.ENVIRONMENT_SENSOR
+import com.dog.samurai.sencordetector.constants.AppConstant.Companion.MOTION_SENSOR
+import com.dog.samurai.sencordetector.constants.AppConstant.Companion.POSITION_SENSOR
 
 class SensorAdapter(private val context: Context,
                     private val sensorTypeList: List<Int>,
@@ -27,7 +25,7 @@ class SensorAdapter(private val context: Context,
     var cardListener: CardListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.cencor_card_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.sensor_card_item, parent, false)
 
         return CardHolder(view).apply {
             view.setOnClickListener { cardListener?.onClick(sensorTypeId, sensorNameText.text.toString(), sensorCategory) }
@@ -71,7 +69,6 @@ class SensorAdapter(private val context: Context,
             holder.sensorNameText.setTextColor(Color.LTGRAY)
             holder.container.setCardBackgroundColor(Color.parseColor("#E6E6E6"))
         } else {
-            holder.sensorNameText.setTextColor(Color.parseColor("#80323232"))
             holder.container.setCardBackgroundColor(Color.WHITE)
         }
     }

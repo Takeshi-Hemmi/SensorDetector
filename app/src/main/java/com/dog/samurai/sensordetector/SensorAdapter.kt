@@ -1,4 +1,4 @@
-package com.dog.samurai.sencordetector
+package com.dog.samurai.sensordetector
 
 import android.content.Context
 import android.graphics.Color
@@ -12,9 +12,9 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.ENVIRONMENT_SENSOR
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.MOTION_SENSOR
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.POSITION_SENSOR
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.ENVIRONMENT_SENSOR
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.MOTION_SENSOR
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.POSITION_SENSOR
 
 class SensorAdapter(private val context: Context,
                     private val sensorTypeList: List<Int>,

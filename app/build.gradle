@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.dog.samurai.sencordetector"
+        applicationId "com.dog.samurai.sensordetector"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1

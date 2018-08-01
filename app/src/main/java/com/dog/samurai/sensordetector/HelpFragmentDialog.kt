@@ -1,4 +1,4 @@
-package com.dog.samurai.sencordetector
+package com.dog.samurai.sensordetector
 
 import android.annotation.SuppressLint
 import android.app.Dialog

@@ -1,4 +1,4 @@
-package com.dog.samurai.sencordetector
+package com.dog.samurai.sensordetector
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,15 +7,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.ENVIRONMENT_SENSOR
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.MOTION_SENSOR
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.POSITION_SENSOR
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.sensorNameList
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.sensorNameListJP
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.sensorTypeList
-import com.dog.samurai.sencordetector.sensors.EnvironmentSensorFragment
-import com.dog.samurai.sencordetector.sensors.MotionSensorFragment
-import com.dog.samurai.sencordetector.sensors.PositionSensorFragment
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.ENVIRONMENT_SENSOR
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.MOTION_SENSOR
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.POSITION_SENSOR
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.sensorNameList
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.sensorNameListJP
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.sensorTypeList
+import com.dog.samurai.sensordetector.sensors.EnvironmentSensorFragment
+import com.dog.samurai.sensordetector.sensors.MotionSensorFragment
+import com.dog.samurai.sensordetector.sensors.PositionSensorFragment
 
 class TopFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.dog.samurai.sencordetector.constants
+package com.dog.samurai.sensordetector.constants
 
 import android.annotation.SuppressLint
 import android.hardware.Sensor

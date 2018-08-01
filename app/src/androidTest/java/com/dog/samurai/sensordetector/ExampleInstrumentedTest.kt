@@ -1,4 +1,4 @@
-package com.dog.samurai.sencordetector
+package com.dog.samurai.sensordetector
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.dog.samurai.sencordetector", appContext.packageName)
+        assertEquals("com.dog.samurai.sensordetector", appContext.packageName)
     }
 }

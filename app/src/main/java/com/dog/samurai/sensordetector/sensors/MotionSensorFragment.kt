@@ -1,4 +1,4 @@
-package com.dog.samurai.sencordetector.sensors
+package com.dog.samurai.sensordetector.sensors
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,7 +12,7 @@ import android.support.v4.content.res.ResourcesCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dog.samurai.sencordetector.R
+import com.dog.samurai.sensordetector.R
 import kotlinx.android.synthetic.main.fragment_detail_sensor.*
 
 class MotionSensorFragment : Fragment(), SensorEventListener {

@@ -1,7 +1,6 @@
-package com.dog.samurai.sencordetector
+package com.dog.samurai.sensordetector
 
 import android.content.Context
-import android.content.DialogInterface
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,8 +9,8 @@ import android.support.v7.app.AppCompatActivity
 import android.transition.Fade
 import android.view.Menu
 import android.view.MenuItem
-import com.dog.samurai.sencordetector.constants.AppConstant
-import com.dog.samurai.sencordetector.constants.AppConstant.Companion.sensorNameList
+import com.dog.samurai.sensordetector.constants.AppConstant
+import com.dog.samurai.sensordetector.constants.AppConstant.Companion.sensorNameList
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds

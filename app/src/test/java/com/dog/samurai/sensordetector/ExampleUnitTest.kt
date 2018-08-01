@@ -1,4 +1,4 @@
-package com.dog.samurai.sencordetector
+package com.dog.samurai.sensordetector
 
 import org.junit.Test
 

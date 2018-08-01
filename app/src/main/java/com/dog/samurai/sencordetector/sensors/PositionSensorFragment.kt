@@ -62,7 +62,7 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
             sensorNameArg = arguments!!.getString(SENSOR_NAME_ARG)
             sensorTypeArg = arguments!!.getInt(SENSOR_TYPE_ARG)
         }
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_detail_sensor, container, false)
     }
 
@@ -72,8 +72,8 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
         sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensor_name.text = sensorNameArg
         detail_frame.background = ResourcesCompat.getDrawable(resources, R.drawable.shape_circle_dark, null)
-        detail_icon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_position, null))
-
+//        detail_icon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_position, null))
+        detail_icon.setImageResource(R.drawable.ic_position)
         when (sensorNameArg) {
             "GAME_ROTATION_VECTOR" -> {
                 sensor_description.text = resources.getString(R.string.position_game_rotation_vector_desc)
@@ -89,19 +89,17 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR)
                 sensor_info.text = "Vendor: ${sensor.vendor}"
-
-//                Photo by Jakub Novacek from Pexels:vector
             }
             "GEOMAGNETIC_ROTATION_VECTOR" -> {
                 sensor_description.text = resources.getString(R.string.position_geomagnetic_rotation_vector_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸に沿った回転ベクトル成分(x * sin(θ/2))"
+                param_key1.text = resources.getString(R.string.position_geomagnetic_rotation_vector_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸に沿った回転ベクトル成分(y * sin(θ/2))"
+                param_key2.text = resources.getString(R.string.position_geomagnetic_rotation_vector_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Z軸に沿った回転ベクトル成分(z * sin(θ/2))"
+                param_key3.text = resources.getString(R.string.position_geomagnetic_rotation_vector_key3)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR)
                 sensor_info.text = "Vendor: ${sensor.vendor}"
@@ -109,37 +107,36 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
             "MAGNETIC_FIELD" -> {
                 sensor_description.text = resources.getString(R.string.position_magnetic_field_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸に沿った地磁気の強さ"
+                param_key1.text = resources.getString(R.string.position_magnetic_field_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸に沿った重力"
+                param_key2.text = resources.getString(R.string.position_magnetic_field_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Z軸に沿った重力"
+                param_key3.text = resources.getString(R.string.position_magnetic_field_key3)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: μT"
-//                Photo by Pete Johnson from Pexels
             }
             "MAGNETIC_FIELD_UNCALIBRATED" -> {
                 sensor_description.text = resources.getString(R.string.position_magnetic_field_uncalibrated_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸に沿った地磁気強度（ハードアイアン較正なし）"
+                param_key1.text = resources.getString(R.string.position_magnetic_field_uncalibrated_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸に沿った地磁気強度（ハードアイアン較正なし）"
+                param_key2.text = resources.getString(R.string.position_magnetic_field_uncalibrated_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Z軸に沿った地磁気強度（ハードアイアン較正なし）"
+                param_key3.text = resources.getString(R.string.position_magnetic_field_uncalibrated_key3)
 
                 param_container4.visibility = View.VISIBLE
-                param_key4.text = "X軸に沿ったアイアンバイアスの推定量"
+                param_key4.text = resources.getString(R.string.position_magnetic_field_uncalibrated_key4)
 
                 param_container5.visibility = View.VISIBLE
-                param_key5.text = "Y軸に沿ったアイアンバイアスの推定量"
+                param_key5.text = resources.getString(R.string.position_magnetic_field_uncalibrated_key5)
 
                 param_container6.visibility = View.VISIBLE
-                param_key6.text = "Z軸に沿ったアイアンバイアスの推定量"
+                param_key6.text = resources.getString(R.string.position_magnetic_field_uncalibrated_key6)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: μT"
@@ -147,13 +144,13 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
             "ORIENTATION" -> {
                 sensor_description.text = resources.getString(R.string.position_orientation_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "Azimuth: 方位角（z軸周りの角度）"
+                param_key1.text = resources.getString(R.string.position_orientation_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Pitch: ピッチ（x軸周りの角度）"
+                param_key2.text = resources.getString(R.string.position_orientation_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Roll: ロール（y軸周りの角度）"
+                param_key3.text = resources.getString(R.string.position_orientation_key3)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: 度"
@@ -161,7 +158,7 @@ class PositionSensorFragment : Fragment(), SensorEventListener {
             "PROXIMITY" -> {
                 sensor_description.text = resources.getString(R.string.position_proximity_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "オブジェクトからの距離"
+                param_key1.text = resources.getString(R.string.position_proximity_key)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: cm"

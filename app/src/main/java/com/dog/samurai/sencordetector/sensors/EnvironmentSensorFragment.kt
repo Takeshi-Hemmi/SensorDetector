@@ -43,7 +43,7 @@ class EnvironmentSensorFragment : Fragment(), SensorEventListener {
         sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensor_name.text = sensorNameArg
         detail_frame.background = ResourcesCompat.getDrawable(resources, R.drawable.shape_circle_light, null)
-        detail_icon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_environment, null))
+        detail_icon.setImageResource(R.drawable.ic_environment)
         param_container1.visibility = View.VISIBLE
 
         when (sensorNameArg) {

@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">SensorDetector</string>
+    <string name="app_name">センサーデテクター</string>
     <string name="test_text_en">Test Text. Test Text. Test Text. Test Text. Test Text. Test Text.</string>
     <string name="test_text_jp">テストテキスト。テストテキスト。テストテキスト。テストテキスト。テストテキスト。</string>
-    <string name="help_main_text">Android携帯が利用できるセンサーの一覧を表示します。お使いの端末に搭載されていないセンサーはグレーで表示されます。
-        \nアイコンはプログラム上で分類されているセンサーの種類を表します。</string>
+    <string name="help_main_text">Android携帯が利用できるセンサーの一覧を表示します。お使いの端末に搭載されていないセンサーはグレーで表示されます。\nアイコンはプログラム上で分類されているセンサーの種類を表します。</string>
     <string name="help_environment">環境センサー</string>
     <string name="help_motion">モーションセンサー</string>
     <string name="help_position">ポジションセンサー</string>
@@ -22,18 +21,46 @@
 
     <string name="motion_accelerometer_desc">端末の加速度を表示します。</string>
     <string name="motion_accelerometer_title">加速度</string>
+    <string name="motion_accelerometer_key1">X軸（重力を含む）に沿った加速力</string>
+    <string name="motion_accelerometer_key2">Y軸（重力を含む）に沿った加速力</string>
+    <string name="motion_accelerometer_key3">Z軸（重力を含む）に沿った加速力</string>
+
     <string name="motion_accelerometer_uncalibrated_desc">端末の加速度を表示します。ハードアイアン校正は考慮されていません。</string>
     <string name="motion_accelerometer_uncalibrated_title">加速度（未校正）</string>
     <string name="motion_gravity_desc">重力を表示します。</string>
     <string name="motion_gravity_title">重力</string>
+    <string name="motion_gravity_key1">X軸に沿った重力</string>
+    <string name="motion_gravity_key2">Y軸に沿った重力</string>
+    <string name="motion_gravity_key3">Z軸に沿った重力</string>
+
     <string name="motion_gyroscope_desc">物体の角度（回転角度）や角速度（角加速度）を表示します。</string>
     <string name="motion_gyroscope_title">ジャイロスコープ</string>
-    <string name="motion_gyroscope_uncalibrated_desc">物体の角度（回転角度）や角速度（角加速度）を</string>
+    <string name="motion_gyroscope_key1">X軸周りの回転速度</string>
+    <string name="motion_gyroscope_key2">Y軸周りの回転速度</string>
+    <string name="motion_gyroscope_key3">Z軸周りの回転速度</string>
+
+    <string name="motion_gyroscope_uncalibrated_desc">物体の角度（回転角度）や角速度（角加速度）を表示します。ドリフト補正は考慮されていません。</string>
     <string name="motion_gyroscope_uncalibrated_title">ジャイロスコープ（未校正）</string>
+    <string name="motion_gyroscope_uncalibrated_key1">X軸周りの回転速度（ドリフト補償なし）</string>
+    <string name="motion_gyroscope_uncalibrated_key2">Y軸周りの回転速度（ドリフト補償なし）</string>
+    <string name="motion_gyroscope_uncalibrated_key3">Z軸周りの回転速度（ドリフト補償なし）</string>
+    <string name="motion_gyroscope_uncalibrated_key4">X軸周りの推定ドリフト</string>
+    <string name="motion_gyroscope_uncalibrated_key5">Y軸周りの推定ドリフト</string>
+    <string name="motion_gyroscope_uncalibrated_key6">Z軸周りの推定ドリフト</string>
+
     <string name="motion_linear_acceleration_desc">重力の影響を除いた端末の加速度を表示します。</string>
     <string name="motion_linear_acceleration_title">加速度（重力除外）</string>
+    <string name="motion_linear_acceleration_key1">X軸に沿った加速力（重力を除く）</string>
+    <string name="motion_linear_acceleration_key2">Y軸に沿った加速力（重力を除く）</string>
+    <string name="motion_linear_acceleration_key3">Z軸に沿った加速力（重力を除く）</string>
+
     <string name="motion_rotation_vector_desc">地軸と角度の組み合わせでスマートフォンの向きを検知します。</string>
     <string name="motion_rotation_vector_title">回転ベクトル</string>
+    <string name="motion_rotation_vector_key1">X軸に沿った回転ベクトル成分(x * sin(θ/2))</string>
+    <string name="motion_rotation_vector_key2">Y軸に沿った回転ベクトル成分(x * sin(θ/2))</string>
+    <string name="motion_rotation_vector_key3">Z軸に沿った回転ベクトル成分(x * sin(θ/2))</string>
+    <string name="motion_rotation_vector_key4">回転ベクトルのスカラー成分((cos(θ/2))</string>
+
     <string name="motion_significant_motion_desc">動作を検出しトリガーイベントを発射するセンサーです。</string>
     <string name="motion_significant_motion_title">動作検出</string>
     <string name="motion_step_counter_desc">最後に再起動してからユーザーが取ったステップ数を表示します。フィットネスアプリなどと共通の数値の場合があります。</string>
@@ -49,12 +76,25 @@
     <string name="position_geomagnetic_rotation_vector_key3">Z軸に沿った回転ベクトル成分(z * sin(θ/2))</string>
 
     <string name="position_magnetic_field_desc">周囲磁場を測定する地磁気センサーです。</string>
+    <string name="position_magnetic_field_key1">X軸に沿った地磁気の強さ</string>
+    <string name="position_magnetic_field_key2">Y軸に沿った重力</string>
+    <string name="position_magnetic_field_key3">Z軸に沿った重力</string>
 
     <string name="position_magnetic_field_uncalibrated_desc">周囲磁場を測定する地磁気センサーですが、ハードアイアン校正は考慮されていません。</string>
+    <string name="position_magnetic_field_uncalibrated_key1">X軸に沿った地磁気強度（ハードアイアン較正なし）</string>
+    <string name="position_magnetic_field_uncalibrated_key2">Y軸に沿った地磁気強度（ハードアイアン較正なし）</string>
+    <string name="position_magnetic_field_uncalibrated_key3">Z軸に沿った地磁気強度（ハードアイアン較正なし）</string>
+    <string name="position_magnetic_field_uncalibrated_key4">X軸に沿ったアイアンバイアスの推定量</string>
+    <string name="position_magnetic_field_uncalibrated_key5">Y軸に沿ったアイアンバイアスの推定量</string>
+    <string name="position_magnetic_field_uncalibrated_key6">Z軸に沿ったアイアンバイアスの推定量</string>
 
     <string name="position_orientation_desc">傾きセンサー。この機能は非推奨となっており、回転ベクトルセンサー、getRotationMatrix、remapCoordinateSystem、getOrientationを使用して数値を取得する事が推奨されています。</string>
+    <string name="position_orientation_key1">Azimuth: 方位角（z軸周りの角度）</string>
+    <string name="position_orientation_key2">Pitch: ピッチ（x軸周りの角度）</string>
+    <string name="position_orientation_key3">Roll: ロール（y軸周りの角度）</string>
 
     <string name="position_proximity_desc">近接センサー。端末によっては「近いか遠いか」のみを表す場合があります。</string>
-
+    <string name="position_proximity_key">オブジェクトからの距離</string>
     <string name="common_hyphen">-</string>
+    <string name="common_finish">アプリを終了します。</string>
 </resources>

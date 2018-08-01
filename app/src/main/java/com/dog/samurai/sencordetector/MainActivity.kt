@@ -1,23 +1,37 @@
 package com.dog.samurai.sencordetector
 
 import android.content.Context
+import android.content.DialogInterface
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.transition.Fade
 import android.view.Menu
 import android.view.MenuItem
 import com.dog.samurai.sencordetector.constants.AppConstant
 import com.dog.samurai.sencordetector.constants.AppConstant.Companion.sensorNameList
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
 
     val enabledList: MutableList<String> = mutableListOf()
+    lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Thread.sleep(1000)
+        setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
+
+        MobileAds.initialize(this, "DUMMY")
+        adView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         AppConstant.sensorTypeList.mapIndexed { index, type ->
             if (((getSystemService(Context.SENSOR_SERVICE) as SensorManager).getDefaultSensor(type)) != null) {
@@ -25,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         renderFragment(TopFragment())
+
     }
 
     fun renderFragment(fragment: Fragment?) {
@@ -57,6 +72,14 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 1) {
             super.onBackPressed()
+        } else {
+            AlertDialog.Builder(this)
+                    .setMessage(R.string.common_finish)
+                    .setPositiveButton("OK") { _, _ ->
+                        finish()
+                    }
+                    .setNegativeButton("キャンセル", null)
+                    .show()
         }
     }
 }

@@ -9,7 +9,6 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat
-import android.transition.Transition
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,20 +55,20 @@ class MotionSensorFragment : Fragment(), SensorEventListener {
         sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensor_name.text = sensorNameArg
         detail_frame.background = ResourcesCompat.getDrawable(resources, R.drawable.shape_circle_normal, null)
-        detail_icon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_motion, null))
+        detail_icon.setImageResource(R.drawable.ic_motion)
 
         when (sensorNameArg) {
             "ACCELEROMETER" -> {
                 sensor_description.text = resources.getString(R.string.motion_accelerometer_desc)
 
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸（重力を含む）に沿った加速力"
+                param_key1.text = resources.getString(R.string.motion_accelerometer_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸（重力を含む）に沿った加速力"
+                param_key2.text = resources.getString(R.string.motion_accelerometer_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Z軸（重力を含む）に沿った加速力"
+                param_key3.text = resources.getString(R.string.motion_accelerometer_key3)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: m/s2"
@@ -85,13 +84,13 @@ class MotionSensorFragment : Fragment(), SensorEventListener {
             "GRAVITY" -> {
                 sensor_description.text = resources.getString(R.string.motion_gravity_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸に沿った重力"
+                param_key1.text = resources.getString(R.string.motion_gravity_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸に沿った重力"
+                param_key2.text = resources.getString(R.string.motion_gravity_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Z軸に沿った重力"
+                param_key3.text = resources.getString(R.string.motion_gravity_key3)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: m/s2"
@@ -99,13 +98,13 @@ class MotionSensorFragment : Fragment(), SensorEventListener {
             "GYROSCOPE" -> {
                 sensor_description.text = resources.getString(R.string.motion_gyroscope_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸周りの回転速度"
+                param_key1.text = resources.getString(R.string.motion_gyroscope_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸周りの回転速度"
+                param_key2.text = resources.getString(R.string.motion_gyroscope_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Z軸周りの回転速度"
+                param_key3.text = resources.getString(R.string.motion_gyroscope_key3)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: rad/s"
@@ -113,22 +112,22 @@ class MotionSensorFragment : Fragment(), SensorEventListener {
             "GYROSCOPE_UNCALIBRATED" -> {
                 sensor_description.text = resources.getString(R.string.motion_gyroscope_uncalibrated_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸周りの回転速度\n（ドリフト補償なし）"
+                param_key1.text = resources.getString(R.string.motion_gyroscope_uncalibrated_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸周りの回転速度\n（ドリフト補償なし）"
+                param_key2.text = resources.getString(R.string.motion_gyroscope_uncalibrated_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Z軸周りの回転速度\n（ドリフト補償なし）"
+                param_key3.text = resources.getString(R.string.motion_gyroscope_uncalibrated_key3)
 
                 param_container4.visibility = View.VISIBLE
-                param_key4.text = "X軸周りの推定ドリフト"
+                param_key4.text = resources.getString(R.string.motion_gyroscope_uncalibrated_key4)
 
                 param_container5.visibility = View.VISIBLE
-                param_key5.text = "Y軸周りの推定ドリフト"
+                param_key5.text = resources.getString(R.string.motion_gyroscope_uncalibrated_key5)
 
                 param_container6.visibility = View.VISIBLE
-                param_key6.text = "Z軸周りの推定ドリフト"
+                param_key6.text = resources.getString(R.string.motion_gyroscope_uncalibrated_key6)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE_UNCALIBRATED)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: rad/s"
@@ -136,13 +135,13 @@ class MotionSensorFragment : Fragment(), SensorEventListener {
             "LINEAR_ACCELERATION" -> {
                 sensor_description.text = resources.getString(R.string.motion_linear_acceleration_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸に沿った加速力\n（重力を除く）"
+                param_key1.text = resources.getString(R.string.motion_linear_acceleration_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸に沿った加速力\n（重力を除く）"
+                param_key2.text = resources.getString(R.string.motion_linear_acceleration_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Y軸に沿った加速力\n（重力を除く）"
+                param_key3.text = resources.getString(R.string.motion_linear_acceleration_key3)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
                 sensor_info.text = "Vendor: ${sensor.vendor} \n単位: m/s2"
@@ -150,16 +149,16 @@ class MotionSensorFragment : Fragment(), SensorEventListener {
             "ROTATION_VECTOR" -> {
                 sensor_description.text = resources.getString(R.string.motion_rotation_vector_desc)
                 param_container1.visibility = View.VISIBLE
-                param_key1.text = "X軸に沿った回転ベクトル成分\n(x * sin(θ/2))"
+                param_key1.text = resources.getString(R.string.motion_rotation_vector_key1)
 
                 param_container2.visibility = View.VISIBLE
-                param_key2.text = "Y軸に沿った回転ベクトル成分\n(x * sin(θ/2))"
+                param_key2.text = resources.getString(R.string.motion_rotation_vector_key2)
 
                 param_container3.visibility = View.VISIBLE
-                param_key3.text = "Y軸に沿った回転ベクトル成分\n(x * sin(θ/2))"
+                param_key3.text = resources.getString(R.string.motion_rotation_vector_key3)
 
                 param_container4.visibility = View.VISIBLE
-                param_key4.text = "回転ベクトルのスカラー成分\n((cos(θ/2))"
+                param_key4.text = resources.getString(R.string.motion_rotation_vector_key4)
 
                 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
                 sensor_info.text = "Vendor: ${sensor.vendor}"

@@ -64,6 +64,7 @@ class SensorAdapter(private val context: Context,
             holder.sensorNameText.setTextColor(Color.LTGRAY)
             holder.container.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorMask))
         } else {
+            holder.sensorNameText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
             holder.container.setCardBackgroundColor(Color.WHITE)
         }
     }
